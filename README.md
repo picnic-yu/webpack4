@@ -166,4 +166,22 @@ new ClenWebpackPlugin([path.join(__dirname,'dist')]),
 ```
 我们会对所有的图片进行压缩，压缩之后的图片如果小于8KB，那么将直接转为Base64编码，否则通过URL的形式连接图片
 
+## 处理css
+处理css主要有2个loader：
+1.  css-loader用来解析处理css文件中的url路径 把css文件变成模块
+2. style-loader 把css文件变成style变迁插入
+安装依赖
+> yarn add css-loader style-loader -D
+配置webpack
+```
+{
+    test:/\.css$/,
+    // css-loader用来解析处理css文件中的url路径 把css文件变成模块
+    // style-loader 把css文件变成style变迁插入
+    // yarn add css-loader style-loader -D
+    // 多个loader有顺序要求 转换时候是从右往左转换的 
+    loader:['style-loader','css-loader']
+},
+```
+
 
