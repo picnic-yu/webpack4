@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const ClenWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
@@ -71,13 +72,16 @@ module.exports = {
             minify:{
                 removeAttributeQuotes:true//属性去掉引号
             }
-        })
+        }),
+        // HRM
+        new webpack.HotModuleReplacementPlugin()
     ],
     // yarn add webpack-dev-server -D
     devServer:{
         contentBase:'./dist',
         host:'localhost',
         port:8080,
+        hot:true,
         compress:true,//服务器返回给浏览器的时候是否开启gzip压缩
     },
     optimization: {

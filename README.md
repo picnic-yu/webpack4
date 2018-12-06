@@ -210,4 +210,25 @@ optimization: {
 ```
 最终生成了3个js文件，main.js对应我们自己的代码，runtime.js对应webpack运行时代码，vendors.js对应所有的第三方库的代码。
 
+## 热替换（HMR）
+一般的开发服务器会监听文件变化,他的变化会导致刷新整个页面 包括数据,但是HMR是可以做到刷新我自己修改的部分
 
+启动HMR 首先要配置webpack-dev-server
+```
+devServer:{
+    contentBase:'./dist',
+    host:'localhost',
+    port:8080,
+    hot:true,
+    compress:true,//服务器返回给浏览器的时候是否开启gzip压缩
+},
+```
+然后引入HotModuleReplacementPlugin插件：
+```
+...
+const webpack = require('webpack');
+...
+new webpack.HotModuleReplacementPlugin()
+...
+```
+执行npm run dev 打开浏览器控制台,若出现[WDS] Hot Module Replacement enabled.则HRM引入成功
