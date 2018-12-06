@@ -17,15 +17,18 @@ module.exports = {
                 // yarn add css-loader style-loader -D
                 // 多个loader有顺序要求 转换时候是从右往左转换的 
                 loader:['style-loader','css-loader']
+            },
+            // babel
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                include: [path.resolve('src')],
+                exclude: [path.resolve('node_modules')]
             }
         ]
     },
     
     plugins:[
-        // 用来自动向模块内部注入变量
-        new webpack.ProvidePlugin({
-            $:'jquery'
-        }),  
         // yarn add clean-webpack-plugin
         new ClenWebpackPlugin([path.join(__dirname,'dist')]),
         // yarn add html-webpack-plugin -D
