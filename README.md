@@ -256,3 +256,17 @@ new MiniCssExtractPlugin({
     chunkFilename: '[id].[hash].css',
 }),
 ```
+# 使用 sass
+安装sass-loader node-sass
+> yarn  add sass-loader node-sass -D
+配置文件
+```
+{
+    test:/\.scss$/,
+    use:[
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "sass-loader"
+    ]
+},
+```

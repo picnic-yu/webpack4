@@ -1,5 +1,5 @@
 import _ from 'lodash'
-
+import './styles/index.scss'
 let element = document.createElement('div');
 element.innerHTML = _.join(['Hello', 'World'], ' ')
 document.body.appendChild(element);
