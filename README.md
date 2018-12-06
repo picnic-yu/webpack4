@@ -270,3 +270,19 @@ new MiniCssExtractPlugin({
     ]
 },
 ```
+
+# 使用 less 
+安装 less  less-loader
+> yarn add less less-loader -D
+配置文件
+```
+{
+    test:/\.scss$/,
+    use:[
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "sass-loader"
+    ]
+},
+```
+

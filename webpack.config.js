@@ -22,6 +22,14 @@ module.exports = {
                 // loader:['style-loader','css-loader']
             },
             {
+                test:/\.less$/,
+                use:[
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "less-loader"
+                     ]
+            },
+            {
                 test:/\.scss$/,
                 use:[
                     MiniCssExtractPlugin.loader,
