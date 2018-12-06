@@ -183,5 +183,31 @@ new ClenWebpackPlugin([path.join(__dirname,'dist')]),
     loader:['style-loader','css-loader']
 },
 ```
+## 代码分隔
+```
+//chunk 代码块分割
+output:{
+    path:path.join(__dirname,'dist'),
+    // name是entry名字，默认main，hash根据打包后文件内容生成的
+    filename:'[name].[hash:8].js'//打包后文件名字
+},
+这样分隔的每个chunk文件都会以自己chunk的名字来命名。
+```
+然后在webpack.config.js中配置optimization：
+```
+optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+        cacheGroups: {
+            vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name: 'vendors',
+                chunks: 'all'
+            }
+        }
+    }
+},
+```
+最终生成了3个js文件，main.js对应我们自己的代码，runtime.js对应webpack运行时代码，vendors.js对应所有的第三方库的代码。
 
 

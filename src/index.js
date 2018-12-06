@@ -1,4 +1,10 @@
-console.log(33)
+import _ from 'lodash'
+
+let element = document.createElement('div');
+element.innerHTML = _.join(['Hello', 'World'], ' ')
+document.body.appendChild(element);
+
+
 // css不是js模块，所以需要loader转化
 const c = 3;
 let test = () => {

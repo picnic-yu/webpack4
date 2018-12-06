@@ -80,4 +80,16 @@ module.exports = {
         port:8080,
         compress:true,//服务器返回给浏览器的时候是否开启gzip压缩
     },
+    optimization: {
+        runtimeChunk: 'single',
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
 }
