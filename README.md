@@ -125,4 +125,45 @@ new ClenWebpackPlugin([path.join(__dirname,'dist')]),
 
 ```
 
+## 处理图片
+主要有以下loader用于处理图片
+1. file-loader，用于将图片转为连接
+2. url-loader，对小图片直接Base64编码，对大图片通过file-loader进行处理
+3. image-webpack-loader，对各种图片进行压缩
+安装上面依赖
+> yarn add file-loader url-loader image-webpack-loader
+修改webpack.config.js文件，加入loader配置如下
+```
+{
+    test: /\.(gif|png|jpe?g|svg)$/i,
+    use: [
+        {
+            loader: 'url-loader',
+            options: {
+                limit: 8*1024
+            }
+        }, {
+            loader: 'image-webpack-loader',
+            options: {
+                mozjpeg: {
+                    progressive: true,
+                    quality: 75
+                },
+                optipng: {
+                    enabled: true
+                },
+                pngquant: {
+                    quality: '65-90',
+                    speed: 4
+                },
+                gifsicle: {
+                    interlaced: false
+                }
+            }
+        }
+    ]
+}
+```
+我们会对所有的图片进行压缩，压缩之后的图片如果小于8KB，那么将直接转为Base64编码，否则通过URL的形式连接图片
+
 

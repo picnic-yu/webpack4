@@ -6,3 +6,10 @@ let test = () => {
 }
 test();
 require('./index.css')
+
+import bigSizeImage from './assets/wallpaper.jpg'
+
+let bigSizeImageElement=document.createElement(('img'));
+bigSizeImageElement.src=bigSizeImage;
+document.body.appendChild(bigSizeImageElement)
+

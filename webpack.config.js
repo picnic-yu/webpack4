@@ -18,6 +18,36 @@ module.exports = {
                 // 多个loader有顺序要求 转换时候是从右往左转换的 
                 loader:['style-loader','css-loader']
             },
+            // image
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8*1024
+                        }
+                    }, {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 75
+                            },
+                            optipng: {
+                                enabled: true
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false
+                            }
+                        }
+                    }
+                ]
+            },
             // babel
             {
                 test: /\.js$/,
