@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ClenWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry:'./src/index.js',
     output:{
@@ -17,7 +18,8 @@ module.exports = {
                 // style-loader 把css文件变成style变迁插入
                 // yarn add css-loader style-loader -D
                 // 多个loader有顺序要求 转换时候是从右往左转换的 
-                loader:['style-loader','css-loader']
+                use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+                // loader:['style-loader','css-loader']
             },
             // image
             {
@@ -74,7 +76,11 @@ module.exports = {
             }
         }),
         // HRM
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].[hash].css',
+        }),
     ],
     // yarn add webpack-dev-server -D
     devServer:{

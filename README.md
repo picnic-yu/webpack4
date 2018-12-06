@@ -232,3 +232,27 @@ new webpack.HotModuleReplacementPlugin()
 ...
 ```
 执行npm run dev 打开浏览器控制台,若出现[WDS] Hot Module Replacement enabled.则HRM引入成功
+
+## 抽离独立的css文件
+style-loader将css动态添加到html文件中，有时（特别是在生产环境下）我们希望将所有的css抽离为独立的css文件，此时可以借助mini-css-extract-plugin，安装mini-css-extract-plugin：
+
+> yarn add mini-css-extract-plugin -D
+将style-loader改为mini-css-extract-plugin的loader：
+```
+...
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+...
+{
+        test: /\.css$/,
+        use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+      }
+...
+```
+还需要引入插件
+```
+new MiniCssExtractPlugin({
+    filename: '[name].[hash].css',
+    chunkFilename: '[id].[hash].css',
+}),
+```
