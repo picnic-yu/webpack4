@@ -18,7 +18,7 @@ module.exports = {
                 // style-loader 把css文件变成style变迁插入
                 // yarn add css-loader style-loader -D
                 // 多个loader有顺序要求 转换时候是从右往左转换的 
-                use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+                use: [ MiniCssExtractPlugin.loader, 'css-loader',"postcss-loader" ]
                 // loader:['style-loader','css-loader']
             },
             {
@@ -26,15 +26,17 @@ module.exports = {
                 use:[
                     MiniCssExtractPlugin.loader,
                     "css-loader",
-                    "less-loader"
-                     ]
+                    "less-loader",
+                    "postcss-loader"
+                ]
             },
             {
                 test:/\.scss$/,
                 use:[
                     MiniCssExtractPlugin.loader,
                     "css-loader",
-                    "sass-loader"
+                    "sass-loader",
+                    "postcss-loader"
                 ]
             },
             // image

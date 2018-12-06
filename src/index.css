@@ -1,3 +1,7 @@
 body{
     color: skyblue;
 }
+.test{
+    display:flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}

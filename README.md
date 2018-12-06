@@ -285,4 +285,37 @@ new MiniCssExtractPlugin({
     ]
 },
 ```
+## 自动处理CSS3属性前缀
+> 为了浏览器的兼容性，有时候我们必须加入-webkit,-ms,-o,-moz这些前缀，PostCSS有个自动加前缀的功能
+安装 postcss-loader 和autoprefixer
 
+> yarn add postcss-loader autoprefixer 
+根目录创建 一个postcss.config.js文件  必须设置支持的浏览器才会自动添加添加浏览器兼容
+```
+module.exports = {
+    plugins: [
+        require('autoprefixer')({
+            "browsers": [
+                "defaults",
+                "not ie < 11",
+                "last 2 versions",
+                "> 1%",
+                "iOS 7",
+                "last 3 iOS versions"
+            ]
+        })
+    ]
+};
+```
+
+然后在webpack用到css地方添加
+```
+{
+    test:/\.css$/,
+    use: [
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "postcss-loader"
+    ]
+}
+```
