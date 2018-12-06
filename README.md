@@ -319,3 +319,17 @@ module.exports = {
     ]
 }
 ```
+## 删除冗余的CSS
+1. 安装 purifycss-webpack,glob 和 purify-css
+> npm i purifycss-webpack glob purify-css  -D
+2. 在配置文件中引入 purifycss-webpack
+```
+const glob = require('glob');
+const PurifyCssWebpack  = require('purifycss-webpack');
+```
+3. 在plugins中作如下配置
+```
+new PurifyCssWebpack({
+    paths:glob.sync(path.join(__dirname,'src/*.html'))
+}) 
+```

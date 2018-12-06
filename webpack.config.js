@@ -1,4 +1,6 @@
 const path = require('path');
+const glob = require('glob');//
+const  PurifyCSSPlugin = require("purifycss-webpack");//消除无用的css
 const webpack = require('webpack');
 const ClenWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -99,6 +101,9 @@ module.exports = {
             filename: '[name].[hash].css',
             chunkFilename: '[id].[hash].css',
         }),
+        new PurifyCSSPlugin({
+            paths: glob.sync(path.join(__dirname, 'src/*.html')),
+        })
     ],
     // yarn add webpack-dev-server -D
     devServer:{
